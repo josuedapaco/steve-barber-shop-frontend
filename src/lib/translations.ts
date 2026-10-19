@@ -251,4 +251,6 @@ export const translations: Record<string, string> = {
   "Tap the map for directions": "Toca el mapa para ver cómo llegar",
   "Location map": "Mapa de ubicación",
   "Close": "Cerrar",
+  "Unavailable": "No disponible",
+  "Selected time": "Hora seleccionada",
 };

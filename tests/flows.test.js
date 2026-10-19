@@ -20,6 +20,18 @@ describe('Vue booking',()=>{
  it('posts a reservation and displays its confirmation',async()=>{wrapper=mount(Home);await flushPromises();await wrapper.find('.time-grid button').trigger('click');const fields=wrapper.findAll('.input-grid input');await fields[0].setValue('Cliente Vue');await fields[1].setValue('vue@example.com');await fields[2].setValue('2025550101');await wrapper.find('form').trigger('submit');await flushPromises();expect(posts.find(p=>p.url==='/api/appointments').body).toMatchObject({name:'Cliente Vue',barberId:'marco',serviceId:'signature',time:'10:00'});expect(wrapper.find('.confirmation').text()).toContain('12345678');});
  it('disables booking and reports a failed team request',async()=>{fetch.mockImplementation(url=>url==='/api/team'?response({error:'Team services are temporarily unavailable.'},503):response({slots:[]}));wrapper=mount(Home);await flushPromises();expect(wrapper.find('.wire-artist-roster [role="alert"]').text()).toContain('temporarily');expect(wrapper.find('.submit-button').attributes('disabled')).toBeDefined();});
 });
+it('selects available times and disables dark reserved times',async()=>{
+ fetch.mockImplementation(url=>url==='/api/team'?response({team}):response({slots:['10:00','11:00'],unavailable:[{time:'10:30',reason:'reserved'}]}));
+ wrapper=mount(Home);await flushPromises();
+ const reserved=wrapper.find('.time.unavailable');
+ expect(reserved.text()).toContain('10:30 AM');
+ expect(reserved.text()).toContain('Reserved');
+ expect(reserved.attributes('disabled')).toBeDefined();
+ await wrapper.find('.time-grid .time:not(:disabled)').trigger('click');
+ expect(wrapper.find('.time.selected').text()).toContain('10:00 AM');
+ expect(wrapper.find('.selected-time').text()).toContain('10:00 AM');
+ expect(wrapper.find('.submit-button').attributes('disabled')).toBeUndefined();
+});
 describe('Vue manager',()=>{
  it('signs in, shows charts, creates professionals and signs out',async()=>{wrapper=mount(Staff);await flushPromises();expect(wrapper.find('.login-card').exists()).toBe(true);await wrapper.find('input[type="password"]').setValue('manager-code');await wrapper.find('form').trigger('submit');await flushPromises();expect(wrapper.find('.staff-welcome').text()).toContain('MANAGER VIEW');expect(wrapper.find('.vue-chart').exists()).toBe(true);const section=wrapper.findAll('.manager-section-menu nav button').find(b=>b.text().includes('Team & services'));await section.trigger('click');await flushPromises();expect(wrapper.findAll('.team-card')).toHaveLength(3);const inputs=wrapper.findAll('.new-person-fields input');await inputs[0].setValue('Vue Barber');await inputs[1].setValue('vue-private-code');await wrapper.find('.new-person-services input').setValue(true);await wrapper.find('.add-professional form').trigger('submit');await flushPromises();expect(posts.find(p=>p.url==='/api/staff/team').body).toMatchObject({name:'Vue Barber',accessCode:'vue-private-code',serviceIds:['signature']});await wrapper.find('.staff-welcome button').trigger('click');await flushPromises();expect(wrapper.find('.login-card').exists()).toBe(true);});
  it('saves changed permissions without allowing unchanged saves',async()=>{authenticated=true;wrapper=mount(Staff);await flushPromises();await wrapper.findAll('.manager-section-menu nav button').find(b=>b.text().includes('Team & services')).trigger('click');await flushPromises();const card=wrapper.find('.team-card');expect(card.find('button').attributes('disabled')).toBeDefined();await card.find('input').setValue(false);await card.find('button').trigger('click');await flushPromises();expect(posts.find(p=>p.url==='/api/staff/services').body).toEqual({staffId:'marco',serviceIds:['beard','complete']});});
