@@ -24,3 +24,23 @@ describe('Vue manager',()=>{
  it('signs in, shows charts, creates professionals and signs out',async()=>{wrapper=mount(Staff);await flushPromises();expect(wrapper.find('.login-card').exists()).toBe(true);await wrapper.find('input[type="password"]').setValue('manager-code');await wrapper.find('form').trigger('submit');await flushPromises();expect(wrapper.find('.staff-welcome').text()).toContain('MANAGER VIEW');expect(wrapper.find('.vue-chart').exists()).toBe(true);const section=wrapper.findAll('.manager-section-menu nav button').find(b=>b.text().includes('Team & services'));await section.trigger('click');await flushPromises();expect(wrapper.findAll('.team-card')).toHaveLength(3);const inputs=wrapper.findAll('.new-person-fields input');await inputs[0].setValue('Vue Barber');await inputs[1].setValue('vue-private-code');await wrapper.find('.new-person-services input').setValue(true);await wrapper.find('.add-professional form').trigger('submit');await flushPromises();expect(posts.find(p=>p.url==='/api/staff/team').body).toMatchObject({name:'Vue Barber',accessCode:'vue-private-code',serviceIds:['signature']});await wrapper.find('.staff-welcome button').trigger('click');await flushPromises();expect(wrapper.find('.login-card').exists()).toBe(true);});
  it('saves changed permissions without allowing unchanged saves',async()=>{authenticated=true;wrapper=mount(Staff);await flushPromises();await wrapper.findAll('.manager-section-menu nav button').find(b=>b.text().includes('Team & services')).trigger('click');await flushPromises();const card=wrapper.find('.team-card');expect(card.find('button').attributes('disabled')).toBeDefined();await card.find('input').setValue(false);await card.find('button').trigger('click');await flushPromises();expect(posts.find(p=>p.url==='/api/staff/services').body).toEqual({staffId:'marco',serviceIds:['beard','complete']});});
 });
+
+describe('Private barber panels',()=>{
+ it.each([['marco','David'],['james','Steve'],['andre','Joey'],['mike','Mike']])('opens the schedule and confirms a status change for %s',async(id,name)=>{
+  const roster=[{id,staffId:id,name,role:'Barber',image:'/avatar.svg',serviceIds:['signature']}];
+  fetch.mockImplementation((url,options={})=>{
+   if(options.method==='POST'){posts.push({url,body:JSON.parse(options.body)});return response({ok:true});}
+   if(url==='/api/team')return response({team:roster});
+   if(url.startsWith('/api/appointments'))return response({session:{role:'barber',barberId:id},appointments:[{id:'own-booking',barberId:id,serviceId:'signature',date:'2099-06-15',time:'10:00',customerName:'Customer Demo',customerPhone:'2025550101',customerEmail:'demo@example.com',status:'confirmed',notes:''}]});
+   return response({error:'Forbidden'},403);
+  });
+  wrapper=mount(Staff);await flushPromises();
+  expect(wrapper.find('.staff-welcome').text()).toContain(name);
+  expect(wrapper.find('.manager-navigation').exists()).toBe(false);
+  expect(wrapper.find('.appointment-main').text()).toContain('Customer Demo');
+  const status=wrapper.find('.appointment-actions select');await status.setValue('completed');await flushPromises();
+  expect(wrapper.find('dialog').attributes('open')).toBeDefined();
+  await wrapper.findAll('dialog button')[1].trigger('click');await flushPromises();
+  expect(posts.find(p=>p.url==='/api/staff/status').body).toEqual({id:'own-booking',status:'completed'});
+ });
+});
