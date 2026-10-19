@@ -299,3 +299,5 @@
 @media(max-width:750px){.wire-site .wire-services{padding:30px 20px}.wire-services .wire-service-main{grid-template-columns:1fr;gap:24px}.wire-services .wire-service-photo{position:static;height:260px}.wire-services .wire-service-option>span{font-size:18px}}
 
 @media(min-width:751px){.wire-artist-roster:has(>button:nth-of-type(4)):not(:has(>button:nth-of-type(5))){grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-flow:row;grid-auto-columns:auto;overflow:visible}}
+
+.footer-inner{flex-wrap:wrap}.footer-inner>a{overflow-wrap:anywhere}
