@@ -3,10 +3,10 @@ import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { api, t, language } from '../lib/state';
 const props = defineProps({ editable: Boolean });
 const current = ref(null), draft = ref(0), dirty = ref(false), busy = ref(false), error = ref(''), saved = ref(false);
-const percent = computed(() => props.editable && dirty.value ? Number(draft.value) : current.value?.percentage);
+const percent = computed(() => current.value?.percentage);
 const label = computed(() => percent.value == null ? 'Not updated yet' : percent.value < 34 ? 'Not too busy' : percent.value < 67 ? 'Moderately busy' : 'Very busy');
 const updated = computed(() => current.value?.updatedAt ? new Intl.DateTimeFormat(language.value === 'es' ? 'es-US' : 'en-US', { timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit' }).format(new Date(current.value.updatedAt)) : '');
-let timer, stopped = false;
+let stopped = false;
 async function load() {
   try {
     const data = await api('/api/busyness');
@@ -23,8 +23,8 @@ async function save() {
   finally { busy.value = false; }
 }
 function edit() { dirty.value = true; saved.value = false; }
-onMounted(() => { load(); timer = setInterval(load, 30000); addEventListener('focus', load); });
-onUnmounted(() => { stopped = true; clearInterval(timer); removeEventListener('focus', load); });
+onMounted(load);
+onUnmounted(() => { stopped = true; });
 </script>
 
 <template>
@@ -37,7 +37,7 @@ onUnmounted(() => { stopped = true; clearInterval(timer); removeEventListener('f
         <input v-model="draft" type="range" min="0" max="100" step="1" :disabled="busy" @input="edit" :aria-label="t('Busyness percentage')">
       </label>
       <div class="busyness-scale"><span>0% · {{t('Not too busy')}}</span><span>100% · {{t('Very busy')}}</span></div>
-      <button type="submit" :disabled="busy || !dirty">{{t(busy ? 'Saving…' : 'Update busyness')}}</button>
+      <button type="submit" :disabled="busy || !dirty">{{t(busy ? 'Saving…' : 'Accept')}}</button>
       <p v-if="saved" role="status">{{t('Busyness updated on the website.')}}</p>
     </form>
     <p v-if="error" role="alert">{{t(error)}}</p>

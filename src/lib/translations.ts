@@ -264,4 +264,5 @@ export const translations: Record<string, string> = {
   "Update busyness": "Actualizar concurrencia",
   "Busyness updated on the website.": "Concurrencia actualizada en la página web.",
   "Busyness is temporarily unavailable.": "La información de concurrencia no está disponible temporalmente.",
+  "Accept": "Aceptar",
 };
