@@ -1,4 +1,5 @@
 <script setup>
+import BrandLogo from '../components/BrandLogo.vue';
 import { ref,reactive,computed,watch,onMounted,onUnmounted } from 'vue';
 import {services} from '../lib/barber';
 import {t,language,toggleLanguage,today,api,useTeam,notifyTeamUpdated} from '../lib/state';
@@ -36,7 +37,7 @@ onUnmounted(()=>{stopped=true;clearInterval(interval);});
 </script>
 <template>
 <main class="staff-page"><dialog ref="dialog" class="staff-confirmation" aria-labelledby="confirmation-title" @cancel.prevent="dismiss"><h2 id="confirmation-title">{{t('Confirm appointment change')}}</h2><p>{{t('You are about to mark this appointment as')}} <strong>{{t(pending?.status==='completed'?'Completed':'Cancelled')}}</strong>.</p><p>{{pending?.row.customerName}} · {{pending?.row.time}}</p><div><button @click="dismiss">{{t('Keep current status')}}</button><button @click="confirm">{{t('Confirm change')}}</button></div></dialog>
-<header class="staff-header"><a class="brand" href="/"><span class="brand-mark">S<span>✦</span></span><span>Steve's Barbershop<small>{{t('BARBER · NEW YORK')}}</small></span></a><button class="language-toggle" @click="toggleLanguage">{{language==='en'?'ES':'EN'}}</button><a href="/">{{t('← BACK TO SITE')}}</a></header>
+<header class="staff-header"><a class="brand" href="/"><BrandLogo /></a><button class="language-toggle" @click="toggleLanguage">{{language==='en'?'ES':'EN'}}</button><a href="/">{{t('← BACK TO SITE')}}</a></header>
 <div class="staff-container"><p class="eyebrow">Steve's Barbershop · {{t(session?.role==='manager'?'MANAGEMENT':session?.role==='barber'?'BARBER DESK':'STAFF')}}</p><h1 v-if="session?.role==='manager'">{{t('MANAGER')}} <em>{{t('DESK.')}}</em></h1><h1 v-else-if="session">{{t('YOUR')}} <em>{{t('CHAIR.')}}</em></h1><h1 v-else>{{t('THE')}} <em>{{t('APPOINTMENTS.')}}</em></h1>
 <p v-if="authorized===null" class="staff-loading" role="status">{{t('Loading schedule…')}}</p>
 <div v-else-if="!session" class="login-card"><p class="eyebrow">{{t('PRIVATE ACCESS')}}</p><h2>{{t('Welcome back.')}}</h2><p>{{t('Sign in to manage Steve\'s Barbershop schedule.')}}</p><form @submit.prevent="login"><label>{{t('Access level')}}<select v-model="accountType"><option value="manager">{{t('Manager')}}</option><option value="barber">{{t('Barber')}}</option></select></label><label v-if="accountType==='barber'">{{t('Your profile')}}<select v-model="loginBarber"><option v-for="person in team||[]" :key="person.id" :value="person.id">{{person.name}}</option></select></label><label>{{t('Access code')}}<input v-model="pin" type="password" required autocomplete="current-password"></label><button class="submit-button" :disabled="busy">{{busy?t('SIGNING IN'):t('OPEN YOUR DESK')}}<span aria-hidden="true">↗</span></button></form></div>

@@ -304,6 +304,12 @@
 
 .location-section{padding:70px 5%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:44px;align-items:center;background:var(--atelier-ink);border-top:1px solid #b89a665c}.location-copy h2{font:500 clamp(30px,4vw,48px)/1.2 'Playfair Display',serif;margin:18px 0}.location-copy>p{color:#c6aa78}.location-copy .gold-button{margin-top:20px}.location-section iframe{width:100%;height:380px;border:1px solid #b89a665c;border-radius:6px}@media(max-width:750px){.location-section{grid-template-columns:1fr;padding:45px 20px;gap:28px}.location-section iframe{height:320px}}
 
+.brand-logo{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:80px;height:80px}.brand-logo img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}.footer-brand .brand-logo{width:112px;height:112px}.staff-header .brand-logo{width:84px;height:84px}
+.wire-site{--nav-height:104px}
+@media(max-width:900px){.wire-site{--nav-height:96px}.wire-header .brand-logo{width:72px;height:72px}}
+@media(max-width:600px){.wire-site{--nav-height:80px}.wire-header .brand-logo{width:64px;height:64px}.staff-header .brand-logo{width:60px;height:60px}.footer-brand .brand-logo{width:96px;height:96px}}
+
+
 /* Keep each barber's portrait, name and shadow inside one consistent card. */
 .wire-site .wire-artists{height:auto;padding:48px 5%;overflow:hidden}
 .wire-site .wire-artists-heading{position:static;width:100%;margin:0 0 30px}
