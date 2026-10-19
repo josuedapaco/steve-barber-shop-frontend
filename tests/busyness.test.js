@@ -46,3 +46,18 @@ it('loads once without polling or rereading on focus', async () => {
   await flushPromises();
   expect(fetch).toHaveBeenCalledTimes(1);
 });
+
+it('explains a missing deployed endpoint instead of a generic service error', async () => {
+  language.value='en';
+  vi.stubGlobal('fetch',vi.fn(()=>Promise.resolve({ok:false,status:404,json:async()=>({detail:'Not Found'})})));
+  wrapper=mount(BusynessMeter,{props:{editable:true}}); await flushPromises();
+  expect(wrapper.find('[role=alert]').text()).toContain('Walk-in updates are not enabled yet');
+  expect(wrapper.text()).not.toContain('Service temporarily unavailable');
+});
+it('explains whether a quiet shop is a good time for walk-ins', async () => {
+  language.value='en';
+  vi.stubGlobal('fetch',vi.fn(()=>response({percentage:20,updatedAt:null})));
+  wrapper=mount(BusynessMeter); await flushPromises();
+  expect(wrapper.text()).toContain('Good time for a walk-in?');
+  expect(wrapper.text()).toContain('A good time to stop by without an appointment.');
+});

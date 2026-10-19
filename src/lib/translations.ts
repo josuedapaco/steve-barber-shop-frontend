@@ -265,4 +265,13 @@ export const translations: Record<string, string> = {
   "Busyness updated on the website.": "Concurrencia actualizada en la página web.",
   "Busyness is temporarily unavailable.": "La información de concurrencia no está disponible temporalmente.",
   "Accept": "Aceptar",
+  "Good time for a walk-in?": "¿Buen momento para venir sin cita?",
+  "Ask our team about walk-in availability.": "Consulta con nuestro equipo la disponibilidad para venir sin cita.",
+  "A good time to stop by without an appointment.": "Es un buen momento para visitarnos sin cita.",
+  "Walk-ins welcome. There may be a short wait.": "Te atendemos sin cita. Puede haber una breve espera.",
+  "Expect a wait for walk-ins. Consider booking a time.": "Puede haber espera para visitas sin cita. Te recomendamos reservar una hora.",
+  "Set the current walk-in busyness": "Indica la ocupación actual para visitas sin cita",
+  "Walk-in updates are not enabled yet. Please contact the manager.": "La actualización de visitas sin cita aún no está habilitada. Contacta al manager.",
+  "Please sign in again to update walk-in availability.": "Inicia sesión de nuevo para actualizar la disponibilidad sin cita.",
+  "Could not update walk-in availability. Please try again.": "No se pudo actualizar la disponibilidad sin cita. Inténtalo de nuevo.",
 };
