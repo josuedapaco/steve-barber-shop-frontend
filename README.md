@@ -1,4 +1,4 @@
-# Steve Barber Shop — Frontend
+# Steve's Barbershop — Frontend
 
 Repositorio independiente de la interfaz Vue 3, Vite y Tailwind. No contiene base de datos ni claves. La API se consume mediante rutas `/api` del mismo dominio.
 

@@ -284,3 +284,5 @@
 .vue-chart{display:flex;gap:14px;align-items:flex-end;min-height:215px;overflow-x:auto;padding:20px 0}.vue-chart-day{flex:1;min-width:48px;text-align:center}.vue-bars{height:160px;display:flex;align-items:flex-end;justify-content:center;gap:3px;border-bottom:1px solid #aaa}.vue-bars>span{width:16px;min-height:1px}.vue-bars .reserved{background:#b89a66}.vue-bars .completed{background:#527058}.vue-bars .cancelled{background:#a65c50}.chart-legend{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;margin-bottom:20px}.vue-demand,.vue-client{padding:20px 0;border-bottom:1px solid #c9c4b8}.vue-demand>div{height:16px;background:#e2dbce;margin:10px 0}.vue-demand>div>span{display:block;height:100%;background:#b89a66}.manager-panel table{border-collapse:collapse;width:100%;font-size:13px}.manager-panel th,.manager-panel td{padding:12px;text-align:left;border-bottom:1px solid #c9c4b8}.manager-table-scroll{overflow-x:auto}
 
 .wire-site .booking-aside .booking-detail{display:block;line-height:1.8}
+
+.header-wordmark{letter-spacing:.08em}.staff-header .brand,.footer-brand{letter-spacing:.08em}
