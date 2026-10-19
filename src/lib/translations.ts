@@ -237,4 +237,8 @@ export const translations: Record<string, string> = {
   "Haircut, beard shape and eyebrows with a razor": "Corte, perfilado de barba y cejas con navaja",
   "Haircut, royal shave and black mask": "Corte, afeitado real y mascarilla negra",
   "Select the services each barber can perform from the full menu.": "Selecciona los servicios de la carta que puede realizar cada barbero.",
+  "Visit us": "Visítanos",
+  "Find us on Google Maps": "Encuéntranos en Google Maps",
+  "Get directions": "Cómo llegar",
+  "View location": "Ver ubicación",
 };
