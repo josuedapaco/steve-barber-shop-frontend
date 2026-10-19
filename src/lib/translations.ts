@@ -241,4 +241,7 @@ export const translations: Record<string, string> = {
   "Find us on Google Maps": "Encuéntranos en Google Maps",
   "Get directions": "Cómo llegar",
   "View location": "Ver ubicación",
+  "New password": "Nueva contraseña",
+  "Change password": "Cambiar contraseña",
+  "Password updated. Use the new password to sign in.": "Contraseña actualizada. Usa la nueva contraseña para iniciar sesión.",
 };
