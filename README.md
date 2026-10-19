@@ -61,3 +61,7 @@ BACKEND_PORT=83
 Este host corresponde al proyecto `thelonec` y servicio `stevebarberback`; si renombraste alguno, usa el nombre interno que muestra EasyPanel. Guarda y vuelve a desplegar. No uses el webhook de despliegue como URL de la API.
 
 En Domains del frontend: dominio `stevesbarbershopny.com`, ruta `/`, protocolo interno HTTP y puerto interno 83. Configura HTTPS y su certificado automático en EasyPanel. El puerto público HTTPS continúa siendo 443; el 83 es interno. Con servicios App independientes no necesitas ejecutar el Caddy/Compose incluido para VPS manual.
+
+## Carta y tiempos provisionales
+
+La carta contiene los 12 servicios y precios de la fotografía proporcionada por el propietario. Los tiempos autorizados provisionalmente son 30 minutos para cortes, 15 para retoques y 45–60 para paquetes. Los servicios se muestran en inglés/español y se usan también en reservas y permisos del manager.

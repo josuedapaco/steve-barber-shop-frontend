@@ -1,18 +1,109 @@
 export const barbers = [
-  { id: "marco", name: "Marco Reyes", role: "Master Barber", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=720&q=85&fit=crop", initials: "MR" },
-  { id: "james", name: "James Cole", role: "Senior Barber", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=720&q=85&fit=crop", initials: "JC" },
-  { id: "andre", name: "André Laurent", role: "Grooming Specialist", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=720&q=85&fit=crop", initials: "AL" },
+  {
+    "id": "marco",
+    "name": "Marco Reyes",
+    "role": "Master Barber",
+    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=720&q=85&fit=crop",
+    "initials": "MR"
+  },
+  {
+    "id": "james",
+    "name": "James Cole",
+    "role": "Senior Barber",
+    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=720&q=85&fit=crop",
+    "initials": "JC"
+  },
+  {
+    "id": "andre",
+    "name": "Andr\u00e9 Laurent",
+    "role": "Grooming Specialist",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=720&q=85&fit=crop",
+    "initials": "AL"
+  }
 ];
 export const services = [
-  { id: "signature", name: "Signature Haircut", price: 75, duration: 60, detail: "Consultation, precision cut & styling" },
-  { id: "beard", name: "Beard Ritual", price: 50, duration: 45, detail: "Shape, hot towel & finishing oil" },
-  { id: "complete", name: "The Complete", price: 115, duration: 75, detail: "Signature cut & beard ritual" },
+  {
+    "id": "signature",
+    "name": "Hair Cut",
+    "price": 25,
+    "duration": 30,
+    "detail": "Classic haircut and styling"
+  },
+  {
+    "id": "complete",
+    "name": "Haircut & Shape Up the Beard w/ Razor",
+    "price": 40,
+    "duration": 45,
+    "detail": "Haircut and beard shape up with a razor"
+  },
+  {
+    "id": "cut-wash-blowdry",
+    "name": "Cut, Wash & Blowdry",
+    "price": 31,
+    "duration": 45,
+    "detail": "Haircut, wash and blowdry"
+  },
+  {
+    "id": "hot-towel-shave",
+    "name": "Hot Towel Shave w/ Massage",
+    "price": 25,
+    "duration": 30,
+    "detail": "Hot towel shave and massage"
+  },
+  {
+    "id": "shape-up",
+    "name": "Shape Up",
+    "price": 15,
+    "duration": 15,
+    "detail": "Clean up the hairline and edges"
+  },
+  {
+    "id": "beard",
+    "name": "Beard Trim",
+    "price": 15,
+    "duration": 15,
+    "detail": "Trim and shape the beard"
+  },
+  {
+    "id": "children",
+    "name": "Children 12 years & younger",
+    "price": 22,
+    "duration": 30,
+    "detail": "Haircut for children aged 12 and under"
+  },
+  {
+    "id": "eyebrows",
+    "name": "Eyebrows w/ Razor",
+    "price": 6,
+    "duration": 15,
+    "detail": "Eyebrow shape up with a razor"
+  },
+  {
+    "id": "special-shape-up",
+    "name": "Special Shape Up, Beard Trim & Eyebrows",
+    "price": 30,
+    "duration": 30,
+    "detail": "Shape up, beard trim and eyebrows"
+  },
+  {
+    "id": "senior",
+    "name": "Senior Citizen Special",
+    "price": 20,
+    "duration": 30,
+    "detail": "Senior citizen haircut special"
+  },
+  {
+    "id": "haircut-beard-eyebrows",
+    "name": "Haircut, Beard Shape & Eyebrows w/ Razor",
+    "price": 45,
+    "duration": 45,
+    "detail": "Haircut, beard shape and eyebrows with a razor"
+  },
+  {
+    "id": "royal-special",
+    "name": "Special: Haircut, Royal Shave and Black Mask",
+    "price": 65,
+    "duration": 60,
+    "detail": "Haircut, royal shave and black mask"
+  }
 ];
-export const times = Array.from({ length: 17 }, (_, i) => `${String(10 + Math.floor(i / 2)).padStart(2, "0")}:${i % 2 ? "30" : "00"}`);
-export function minutes(time: string) { const [h, m] = time.split(":").map(Number); return h * 60 + m; }
-export function isCalendarDate(date: string) {
-  return /^\d{4}-\d{2}-\d{2}$/.test(date) && !Number.isNaN(Date.parse(date + "T12:00:00Z")) && new Date(date + "T12:00:00Z").toISOString().slice(0, 10) === date;
-}
-export function nyToday() {
-  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
-}

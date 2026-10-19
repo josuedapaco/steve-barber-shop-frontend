@@ -286,3 +286,14 @@
 .wire-site .booking-aside .booking-detail{display:block;line-height:1.8}
 
 .header-wordmark{letter-spacing:.08em}.staff-header .brand,.footer-brand{letter-spacing:.08em}
+
+/* Let the complete twelve-service menu determine its height. */
+.wire-site .wire-services{height:auto;padding:44px 4%;overflow:visible}
+.wire-services .wire-title-bars{position:static;width:100%}
+.wire-services .wire-title-bars p{width:100%;margin-top:12px}
+.wire-services .wire-service-main{position:static;inset:auto;display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.5fr);gap:5%;margin-top:32px;align-items:start}
+.wire-services .wire-service-photo{position:sticky;top:110px;height:520px;display:block}
+.wire-services .wire-service-photo img{width:100%;height:100%;max-width:none;object-fit:cover}
+.wire-services .wire-service-copy{height:auto;padding:0;min-width:0}
+.wire-services .wire-service-option>span{font-size:clamp(16px,1.6vw,22px);white-space:normal;overflow-wrap:anywhere}
+@media(max-width:750px){.wire-site .wire-services{padding:30px 20px}.wire-services .wire-service-main{grid-template-columns:1fr;gap:24px}.wire-services .wire-service-photo{position:static;height:260px}.wire-services .wire-service-option>span{font-size:18px}}
