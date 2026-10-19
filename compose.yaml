@@ -20,7 +20,7 @@ services:
       backend:
         condition: service_healthy
     expose:
-      - "8080"
+      - "83"
   caddy:
     image: caddy:2-alpine
     restart: unless-stopped
