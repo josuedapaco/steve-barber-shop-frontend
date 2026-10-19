@@ -34,7 +34,7 @@ onUnmounted(() => { stopped = true; });
 </script>
 
 <template>
-  <section class="busyness-panel" :class="{ 'busyness-editor': editable }" :aria-label="t('Good time for a walk-in?')">
+  <section class="busyness-panel" :class="{ 'busyness-editor': editable, 'busyness-compact': !editable }" :aria-label="t('Good time for a walk-in?')">
     <div class="busyness-heading"><span>{{t('Good time for a walk-in?')}}</span><strong>{{percent == null ? '—' : percent + '%'}}</strong></div>
     <meter :value="percent ?? 0" min="0" max="100" :aria-label="t('Good time for a walk-in?')" :aria-valuetext="t(label)">{{percent ?? 0}}%</meter>
     <div class="busyness-caption" aria-live="polite"><strong>{{t(label)}}</strong><small>{{t('Reported by our team')}}<template v-if="updated"> · {{updated}} ET</template></small></div>
@@ -47,7 +47,7 @@ onUnmounted(() => { stopped = true; });
       <button type="submit" :disabled="busy || !dirty">{{t(busy ? 'Saving…' : 'Accept')}}</button>
       <p v-if="saved" role="status">{{t('Busyness updated on the website.')}}</p>
     </form>
-    <p v-if="error" role="alert">{{t(error)}}</p>
+    <p v-if="error && (editable || percent != null)" role="alert">{{t(error)}}</p>
   </section>
 </template>
 
@@ -70,4 +70,15 @@ button{min-height:48px;margin-top:18px;padding:12px 20px;border:1px solid #b89a6
 button:disabled{opacity:.5;cursor:default}p{font-size:13px;line-height:1.5}
 @media(max-width:600px){.busyness-panel{padding:16px 20px}.busyness-caption{align-items:flex-start;flex-direction:column;gap:5px}.walk-in-guidance{margin:10px 0 0;color:#d2c4a6}
 .busyness-editor{padding:18px}.busyness-editor button{width:100%}}
+
+.busyness-compact{padding:16px;background:linear-gradient(145deg,#24271ff5,#141610f5);border:1px solid #b89a6666;border-radius:10px;box-shadow:0 12px 32px #0005}
+.busyness-compact .busyness-heading{gap:12px;margin-bottom:10px;align-items:flex-start;font-size:10px;line-height:1.5}
+.busyness-compact .busyness-heading>span{max-width:155px;letter-spacing:.05em}
+.busyness-compact .busyness-heading>strong{font-size:22px;font-weight:500;line-height:1}
+.busyness-compact meter{height:6px}
+.busyness-compact .busyness-caption{flex-direction:column;align-items:flex-start;gap:5px;margin-top:10px;font-size:13px}
+.busyness-compact .busyness-caption small{font-size:9px;line-height:1.5;color:#ada895}
+.busyness-compact .walk-in-guidance{font-size:12px;line-height:1.5;margin:8px 0 0}
+.busyness-compact p[role=alert]{font-size:11px}
+@media(max-width:600px){.busyness-compact{padding:12px 14px}.busyness-compact .busyness-heading{font-size:9px;gap:8px}.busyness-compact .busyness-heading>strong{font-size:20px}.busyness-compact .busyness-caption{font-size:12px;gap:3px}.busyness-compact .walk-in-guidance{font-size:11px;line-height:1.4}}
 </style>

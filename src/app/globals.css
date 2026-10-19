@@ -345,3 +345,6 @@
 .time-grid .time small{display:block;font-size:10px;font-weight:400;margin-top:3px}
 .time-grid .time:focus-visible{outline:3px solid #765b31;outline-offset:2px}
 .selected-time{font-size:14px;color:#544126;margin:14px 0}.time-grid>.muted{grid-column:1/-1}
+
+.wire-hero .hero-walk-in{position:absolute;left:5%;bottom:110px;z-index:3;width:260px;max-width:40%}
+@media(max-width:600px){.wire-hero .hero-walk-in{left:auto;right:16px;top:18px;bottom:auto;width:228px;max-width:calc(100% - 32px)}.wire-hero .wire-hero-copy{top:35%}}
