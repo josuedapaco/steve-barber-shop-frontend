@@ -17,7 +17,7 @@ Vite envía `/api` al backend FastAPI local en `http://127.0.0.1:3000`. Inicia e
 docker build -t steve-barber-shop-frontend .
 ```
 
-El Dockerfile compila con Node 24 y sirve los archivos con Nginx en el puerto 83. Nginx envía `/api` a `backend:83`; ambos contenedores deben compartir una red Docker con ese nombre para el backend.
+El Dockerfile compila con Node 24 y sirve los archivos con Nginx en el puerto 83. Nginx envía `/api` al host y puerto definidos por `BACKEND_HOST` y `BACKEND_PORT`. La imagen usa por defecto `thelonec_stevebarberback:83` para el proyecto EasyPanel actual. El Compose cambia el host a `backend` automáticamente. Ambos servicios deben compartir una red interna. La resolución DNS se realiza al recibir peticiones, por lo que el frontend puede arrancar aunque el backend todavía no esté disponible.
 
 ## Hostinger VPS y dominio
 
@@ -48,3 +48,16 @@ El acceso de manager es `https://stevesbarbershopny.com/staff`. Las claves se co
 ## Pruebas Vue
 
 `npm test` comprueba selección de servicios y barberos, errores de disponibilidad, envío de reservas, acceso del manager, altas y guardado de permisos. El backend se ejecuta con Python/FastAPI y tiene sus propias pruebas.
+
+## EasyPanel: servicios independientes
+
+En Environment del frontend configura:
+
+```env
+BACKEND_HOST=thelonec_stevebarberback
+BACKEND_PORT=83
+```
+
+Este host corresponde al proyecto `thelonec` y servicio `stevebarberback`; si renombraste alguno, usa el nombre interno que muestra EasyPanel. Guarda y vuelve a desplegar. No uses el webhook de despliegue como URL de la API.
+
+En Domains del frontend: dominio `stevesbarbershopny.com`, ruta `/`, protocolo interno HTTP y puerto interno 83. Configura HTTPS y su certificado automático en EasyPanel. El puerto público HTTPS continúa siendo 443; el 83 es interno. Con servicios App independientes no necesitas ejecutar el Caddy/Compose incluido para VPS manual.
