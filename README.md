@@ -1,6 +1,6 @@
 # Steve Barber Shop — Frontend
 
-Repositorio independiente de la interfaz React, TypeScript, Vite y Tailwind. No contiene base de datos ni claves. La API se consume mediante rutas `/api` del mismo dominio.
+Repositorio independiente de la interfaz Vue 3, Vite y Tailwind. No contiene base de datos ni claves. La API se consume mediante rutas `/api` del mismo dominio.
 
 ## Desarrollo
 
@@ -9,7 +9,7 @@ npm ci
 npm run dev
 ```
 
-Vite envía `/api` al backend local en `http://127.0.0.1:3000`. Inicia el backend por separado. Producción: `npm run build` genera `dist/`. `npm run typecheck` comprueba TypeScript.
+Vite envía `/api` al backend FastAPI local en `http://127.0.0.1:3000`. Inicia el backend por separado. Producción: `npm run build` genera `dist/`. `npm run typecheck` comprueba TypeScript.
 
 ## Docker
 
@@ -44,3 +44,7 @@ Antes de arrancar en el VPS:
 Este despliegue Docker requiere un VPS o un servicio que admita contenedores, red interna y volúmenes persistentes. No se ha modificado el DNS ni desplegado en Hostinger.
 
 El acceso de manager es `https://stevesbarbershopny.com/staff`. Las claves se configuran en el backend.
+
+## Pruebas Vue
+
+`npm test` comprueba selección de servicios y barberos, errores de disponibilidad, envío de reservas, acceso del manager, altas y guardado de permisos. El backend se ejecuta con Python/FastAPI y tiene sus propias pruebas.
