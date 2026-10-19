@@ -17,7 +17,7 @@ Vite envía `/api` al backend FastAPI local en `http://127.0.0.1:3000`. Inicia e
 docker build -t steve-barber-shop-frontend .
 ```
 
-El Dockerfile compila con Node 24 y sirve los archivos con Nginx en el puerto 83. Nginx envía `/api` a `backend:3000`; ambos contenedores deben compartir una red Docker con ese nombre para el backend.
+El Dockerfile compila con Node 24 y sirve los archivos con Nginx en el puerto 83. Nginx envía `/api` a `backend:83`; ambos contenedores deben compartir una red Docker con ese nombre para el backend.
 
 ## Hostinger VPS y dominio
 

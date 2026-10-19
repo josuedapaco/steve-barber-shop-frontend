@@ -7,9 +7,9 @@ services:
     volumes:
       - barber_data:/app/data
     expose:
-      - "3000"
+      - "83"
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:3000/api/health',timeout=3)"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:83/api/health',timeout=3)"]
       interval: 10s
       timeout: 5s
       retries: 6
