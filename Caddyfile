@@ -1,0 +1,7 @@
+stevesbarbershopny.com {
+    encode zstd gzip
+    reverse_proxy frontend:8080
+}
+www.stevesbarbershopny.com {
+    redir https://stevesbarbershopny.com{uri} permanent
+}
