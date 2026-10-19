@@ -303,3 +303,21 @@
 .footer-inner{flex-wrap:wrap}.footer-inner>a{overflow-wrap:anywhere}
 
 .location-section{padding:70px 5%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:44px;align-items:center;background:var(--atelier-ink);border-top:1px solid #b89a665c}.location-copy h2{font:500 clamp(30px,4vw,48px)/1.2 'Playfair Display',serif;margin:18px 0}.location-copy>p{color:#c6aa78}.location-copy .gold-button{margin-top:20px}.location-section iframe{width:100%;height:380px;border:1px solid #b89a665c;border-radius:6px}@media(max-width:750px){.location-section{grid-template-columns:1fr;padding:45px 20px;gap:28px}.location-section iframe{height:320px}}
+
+/* Keep each barber's portrait, name and shadow inside one consistent card. */
+.wire-site .wire-artists{height:auto;padding:48px 5%;overflow:hidden}
+.wire-site .wire-artists-heading{position:static;width:100%;margin:0 0 30px}
+.wire-site .wire-artists-stage{position:static}
+.wire-site .wire-artists .wire-artist-frame{display:none;border:0;box-shadow:none}
+.wire-site .wire-artists .wire-artist-frame::after{content:none;display:none}
+.wire-site .wire-artists .wire-artist-roster{position:static;inset:auto;height:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-flow:row;grid-auto-columns:auto;gap:24px;overflow:visible;padding:0;margin:0;align-items:stretch}
+.wire-site .wire-artists .wire-barber-option{height:100%;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 1fr;align-items:start;gap:0;padding:0;background:linear-gradient(180deg,#22241e,#161812);border:1px solid #b89a6640;border-radius:14px;box-shadow:0 12px 25px #00000035;overflow:hidden;isolation:isolate;transition:border-color .2s,background .2s,box-shadow .2s}
+.wire-site .wire-artists .wire-barber-option.active{border-color:#c6aa78;background:linear-gradient(180deg,#28291f,#1d1f18);box-shadow:0 12px 25px #00000035}
+.wire-site .wire-artists .wire-barber-option:hover{border-color:#c6aa78}
+.wire-site .wire-artists .wire-barber-portrait{grid-row:auto;display:block;width:100%;height:auto;aspect-ratio:1;min-height:0;border-radius:0;outline:none;box-shadow:none}
+.wire-site .wire-artists .wire-barber-portrait img{display:block;width:100%;height:100%;object-fit:cover}
+.wire-site .wire-artists .wire-barber-option strong{display:block;width:100%;margin:0;padding:18px 20px 8px;font-size:clamp(20px,2vw,26px);line-height:1.3;white-space:normal;align-self:auto;text-shadow:none}
+.wire-site .wire-artists .wire-barber-option small{display:block;width:100%;margin:0;padding:0 20px 22px;line-height:1.5;align-self:auto;text-shadow:none}
+.wire-site .wire-artists .wire-wide-cta{position:static;inset:auto;width:100%;height:auto;min-height:88px;margin-top:28px;padding:24px 28px;border-radius:12px;font-size:clamp(20px,2.5vw,30px)}
+@media(max-width:900px){.wire-site .wire-artists .wire-artist-roster{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}}
+@media(max-width:540px){.wire-site .wire-artists{padding:36px 20px}.wire-site .wire-artists .wire-artist-roster{grid-template-columns:1fr;gap:16px}.wire-site .wire-artists .wire-barber-option{grid-template-columns:88px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:16px;padding:12px}.wire-site .wire-artists .wire-barber-portrait{grid-row:1/3;width:88px;height:112px;aspect-ratio:auto;border-radius:6px}.wire-site .wire-artists .wire-barber-option strong{padding:8px 0 4px;font-size:22px}.wire-site .wire-artists .wire-barber-option small{padding:0 0 8px}.wire-site .wire-artists .wire-wide-cta{min-height:72px;padding:20px}}
