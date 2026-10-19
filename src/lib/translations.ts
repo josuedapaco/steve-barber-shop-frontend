@@ -248,4 +248,7 @@ export const translations: Record<string, string> = {
   "Walk-ins welcome": "Walk-ins welcome · Te atendemos sin cita",
   "Book online or stop by during opening hours.": "Reserva en línea o visítanos durante el horario de atención.",
   "Choose your maps app": "Elige tu aplicación de mapas",
+  "Tap the map for directions": "Toca el mapa para ver cómo llegar",
+  "Location map": "Mapa de ubicación",
+  "Close": "Cerrar",
 };
