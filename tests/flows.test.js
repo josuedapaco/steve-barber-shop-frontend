@@ -3,7 +3,7 @@ import {mount,flushPromises} from '@vue/test-utils';
 import Home from '../src/views/Home.vue';
 import Staff from '../src/views/Staff.vue';
 import {language} from '../src/lib/state';
-const team=[{id:'marco',staffId:'marco',name:'Marco Reyes',role:'Master Barber',image:'/avatar.svg',serviceIds:['signature','beard','complete']},{id:'new',staffId:'new',name:'New Barber',role:'Barber',image:'/avatar.svg',serviceIds:['beard']},{id:'off',staffId:'off',name:'Off Duty',role:'Barber',image:'/avatar.svg',serviceIds:[]}];
+const team=[{id:'marco',staffId:'marco',name:'David',role:'Barber',image:'/avatar.svg',serviceIds:['signature','beard','complete']},{id:'new',staffId:'new',name:'New Barber',role:'Barber',image:'/avatar.svg',serviceIds:['beard']},{id:'off',staffId:'off',name:'Off Duty',role:'Barber',image:'/avatar.svg',serviceIds:[]}];
 let wrapper,posts,authenticated;
 const response=(data,status=200)=>Promise.resolve({ok:status<400,status,json:async()=>data});
 beforeEach(()=>{language.value='en';posts=[];authenticated=false;vi.stubGlobal('localStorage',{getItem:()=>null,setItem:()=>{},clear:()=>{}});vi.stubGlobal('fetch',vi.fn((url,options={})=>{
